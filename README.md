@@ -12,7 +12,7 @@ Project is in progress.
 There are 7 kinds of pieces (or tetrominos), each of which is constructed using 4 blocks and has at most 4 different rotations. Filled lines are deleted and player loses when there is at least one block on the first line of the board (playing field). The following are game controls:
 - Left/Right/Down: Move current piece,
 - Space: Rotate current piece clockwise (if possible),
-- Enter: Immediately the piece,
+- Enter: Immediately drop current piece,
 - Ecs: Exit the game.
 
 
