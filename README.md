@@ -2,8 +2,8 @@
 A Tetris game written in C++, using the SDL2 for visual implementation.
 
 # Setup
-Download all files and open main.cpp with Codeblocks, then hit Build and run.
-Requirements: SDL2 installation.
+- Download all files and open main.cpp with Codeblocks, then hit Build and run.
+- Requirements: SDL2 installation.
 
 # Project Status
 Project is in progress.
