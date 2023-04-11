@@ -38,7 +38,15 @@ int main(int argc, char* argv[])
                     if (isPossibleMove(posX - 1, posY, storingBoard))
                     {
                         posX--;
+                        if (isToStore(posX, posY, storingBoard) == true)
+                        {
+                            updateStoringBoard(posX, posY, storingBoard);
+                            posX = 5; posY = 0;
+                        }
                         updateMovingBoard(posX, posY, movingBoard);
+                    if (isGameOver(storingBoard))
+                        gameOver = true;
+
                     }
                     break;
                 }
@@ -48,8 +56,16 @@ int main(int argc, char* argv[])
                     if (isPossibleMove(posX + 1, posY, storingBoard))
                     {
                         posX++;
+                        if (isToStore(posX, posY, storingBoard) == true)
+                        {
+                            updateStoringBoard(posX, posY, storingBoard);
+                            posX = 5; posY = 0;
+                        }
                         updateMovingBoard(posX, posY, movingBoard);
                     }
+                    if (isGameOver(storingBoard))
+                        gameOver = true;
+
                     break;
 
                 }
