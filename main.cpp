@@ -65,17 +65,13 @@ int main(int argc, char* argv[])
                         }
                         updateMovingBoard(posX, posY, movingBoard);
                     }
-                    if (!isPossibleMove(posX, posY + 1, storingBoard))
-                    {
-                        updateStoringBoard(posX, posY, storingBoard);
-                        posX = 5; posY = 0;
-                    }
+                    if (isGameOver(storingBoard))
+                        gameOver = true;
+
                     if (posY == 0 && !isFreeBlock(posX, posY + 1, storingBoard))
                     {
                         storingBoard[0][posX] = 1;
                     }
-                    if (isGameOver(storingBoard))
-                        gameOver = true;
 
                     break;
                 }
