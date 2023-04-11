@@ -1,115 +1,91 @@
 #include "Board.h"
 
-Board::Board (Pieces *pPieces, int pScreenHeight)
+void deletePossibleLines(std::vector<std::vector<int>> &storingBoard)
 {
-	mScreenHeight = pScreenHeight;
-
-	mPieces = pPieces;
-
-	InitBoard();
+    for (int i = 0; i < 20; i++)
+    {
+        int cnt = 0;
+        for (int j = 0; j < 10; j++)
+            if (storingBoard[i][j] == 1) cnt++;
+        if (cnt == 10)
+            deleteLine(storingBoard, i);
+    }
 }
 
-
-void Board::InitBoard()
+void deleteLine(std::vector<std::vector<int>> &storingBoard, int line)
 {
-	for (int i = 0; i < BOARD_WIDTH; i++)
-		for (int j = 0; j < BOARD_HEIGHT; j++)
-			mBoard[i][j] = POS_FREE;
+    if (line == 0)
+    {
+        for (int i = 0; i < 10; i++)
+            storingBoard[0][i] = 0;
+    }
+    else
+    {
+        for (int j = line; j > 0; j--)
+            for (int i = 0; i < 10; i++)
+                storingBoard[j][i] = storingBoard[j - 1][i];
+    }
 }
 
-
-void Board::StorePiece (int pX, int pY, int pPiece, int pRotation)
+bool isToStore(int posX, int posY, std::vector<std::vector<int>> storingBoard)
 {
-	for (int i1 = pX, i2 = 0; i1 < pX + PIECE_BLOCKS; i1++, i2++)
-	{
-		for (int j1 = pY, j2 = 0; j1 < pY + PIECE_BLOCKS; j1++, j2++)
-		{
-			if (mPieces->GetBlockType (pPiece, pRotation, j2, i2) != 0)
-				mBoard[i1][j1] = POS_FILLED;
-		}
-	}
+    if (posY == 19 || !isFreeBlock(posX, posY + 1, storingBoard))
+        return true;
+    return false;
 }
 
-
-
-bool Board::IsGameOver()
+bool isFreeBlock(int posX, int posY, std::vector<std::vector<int>> storingBoard)
 {
-	for (int i = 0; i < BOARD_WIDTH; i++)
-	{
-		if (mBoard[i][0] == POS_FILLED) return true;
-	}
-
-	return false;
+    if (storingBoard[posY][posX] == 1) return false;
+    else return true;
 }
 
-
-void Board::DeleteLine (int pY)
+bool isPossibleMove (int posX, int posY, std::vector<std::vector<int>> storingBoard)
 {
-	for (int j = pY; j > 0; j--)
-	{
-		for (int i = 0; i < BOARD_WIDTH; i++)
-		{
-			mBoard[i][j] = mBoard[i][j-1];
-		}
-	}
+    if ((0 <= posX && posX <= 9) && posY <= 19 && isFreeBlock(posX, posY, storingBoard) == true)
+        return true;
+    return false;
 }
 
-
-void Board::DeletePossibleLines ()
+int posInPixels(int pos)
 {
-	for (int j = 0; j < BOARD_HEIGHT; j++)
-	{
-		int i = 0;
-		while (i < BOARD_WIDTH)
-		{
-			if (mBoard[i][j] != POS_FILLED) break;
-			i++;
-		}
-
-		if (i == BOARD_WIDTH) DeleteLine (j);
-	}
+    return pos * 30 + 5;
 }
 
-
-bool Board::IsFreeBlock (int pX, int pY)
+void updateStoringBoard(int posX, int posY, std::vector<std::vector<int>>& storingBoard)
 {
-	if (mBoard [pX][pY] == POS_FREE) return true; else return false;
+    storingBoard[posY][posX] = 1;
 }
 
-
-int Board::GetXPosInPixels (int pPos)
+void initBoard(std::vector<std::vector<int>> &b)
 {
-	return  ( ( BOARD_POSITION - (BLOCK_SIZE * (BOARD_WIDTH / 2)) ) + (pPos * BLOCK_SIZE) );
+    std::vector<std::vector<int>> vec(20, std::vector<int> (10, 0));
+    b = vec;
 }
 
-
-int Board::GetYPosInPixels (int pPos)
+void updateMovingBoard(int posX, int posY, std::vector<std::vector<int>>& board)
 {
-	return ( (mScreenHeight - (BLOCK_SIZE * BOARD_HEIGHT)) + (pPos * BLOCK_SIZE) );
+    initBoard(board);
+    board[posY][posX] = 1;
 }
 
-
-bool Board::IsPossibleMovement (int pX, int pY, int pPiece, int pRotation)
+void dropTheBlock(int posX, int& posY, std::vector<std::vector<int>> storingBoard)
 {
-	for (int i1 = pX, i2 = 0; i1 < pX + PIECE_BLOCKS; i1++, i2++)
-	{
-		for (int j1 = pY, j2 = 0; j1 < pY + PIECE_BLOCKS; j1++, j2++)
-		{
-			if (	i1 < 0 			||
-				i1 > BOARD_WIDTH  - 1	||
-				j1 > BOARD_HEIGHT - 1)
-			{
-				if (mPieces->GetBlockType (pPiece, pRotation, j2, i2) != 0)
-					return 0;
-			}
+    for (int line = 19; line >= 0; line--)
+    {
+        if (isPossibleMove(posX, line, storingBoard))
+        {
+            posY = line;
+            break;
+        }
+    }
+}
 
-			if (j1 >= 0)
-			{
-				if ((mPieces->GetBlockType (pPiece, pRotation, j2, i2) != 0) &&
-					(!IsFreeBlock (i1, j1))	)
-					return false;
-			}
-		}
-	}
-	return true;
+bool isGameOver(std::vector<std::vector<int>> storingBoard)
+{
+    for (int i = 0; i < 10; i++)
+    {
+        if (!isFreeBlock(i, 0, storingBoard)) return true;
+    }
+    return false;
 }
