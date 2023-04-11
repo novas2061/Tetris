@@ -14,17 +14,9 @@ void deletePossibleLines(std::vector<std::vector<int>> &storingBoard)
 
 void deleteLine(std::vector<std::vector<int>> &storingBoard, int line)
 {
-    if (line == 0)
-    {
+    for (int j = line; j > 0; j--)
         for (int i = 0; i < 10; i++)
-            storingBoard[0][i] = 0;
-    }
-    else
-    {
-        for (int j = line; j > 0; j--)
-            for (int i = 0; i < 10; i++)
-                storingBoard[j][i] = storingBoard[j - 1][i];
-    }
+            storingBoard[j][i] = storingBoard[j - 1][i];
 }
 
 bool isToStore(int posX, int posY, std::vector<std::vector<int>> storingBoard)
