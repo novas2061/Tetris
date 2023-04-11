@@ -16,6 +16,6 @@ Filled lines are deleted and player loses when there is at least one block on th
 
 
 # Room for Improvement
-- Sound effects and theme music to be added
-- Scoring system to be added
-- Different shapes of block (pieces) to be added
+- Sound effects and theme music to be added,
+- Scoring system to be added,
+- Different shapes of block (pieces) to be added.
