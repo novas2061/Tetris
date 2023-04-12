@@ -49,12 +49,6 @@ void updateStoringBoard(int posX, int posY, std::vector<std::vector<int>>& stori
     storingBoard[posY][posX] = 1;
 }
 
-void initBoard(std::vector<std::vector<int>> &b)
-{
-    std::vector<std::vector<int>> vec(20, std::vector<int> (10, 0));
-    b = vec;
-}
-
 void dropTheBlock(int posX, int& posY, std::vector<std::vector<int>> storingBoard)
 {
     for (int line = 19; line >= 0; line--)
