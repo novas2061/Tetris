@@ -4,7 +4,6 @@
 
 int main(int argc, char* argv[])
 {
-    bool gameOver = false;
 
     // boards
     std::vector<std::vector<int>> movingBoard(20, std::vector<int> (10, 0));
@@ -44,9 +43,6 @@ int main(int argc, char* argv[])
                             posX = 5; posY = 0;
                         }
                         updateMovingBoard(posX, posY, movingBoard);
-                    if (isGameOver(storingBoard))
-                        gameOver = true;
-
                     }
                     break;
                 }
@@ -63,9 +59,6 @@ int main(int argc, char* argv[])
                         }
                         updateMovingBoard(posX, posY, movingBoard);
                     }
-                    if (isGameOver(storingBoard))
-                        gameOver = true;
-
                     break;
 
                 }
@@ -81,14 +74,6 @@ int main(int argc, char* argv[])
                         }
                         updateMovingBoard(posX, posY, movingBoard);
                     }
-                    if (isGameOver(storingBoard))
-                        gameOver = true;
-
-                    if (posY == 0 && !isFreeBlock(posX, posY + 1, storingBoard))
-                    {
-                        storingBoard[0][posX] = 1;
-                    }
-
                     break;
                 }
 
@@ -97,15 +82,13 @@ int main(int argc, char* argv[])
                     dropTheBlock(posX, posY, storingBoard);
                     updateStoringBoard(posX, posY, storingBoard);
                     posX = 5; posY = 0;
-                    if (isGameOver(storingBoard))
-                    gameOver = true;
                 }
             }
 
             deletePossibleLines(storingBoard);
             drawScene(renderer, storingBoard, Block(posX, posY));
 
-            if (gameOver == true)
+            if (isGameOver(storingBoard))
             {
                 std::cout << "GAME OVER" << std::endl;
                 break;
