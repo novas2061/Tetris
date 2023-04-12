@@ -5,8 +5,7 @@
 int main(int argc, char* argv[])
 {
 
-    // boards
-    std::vector<std::vector<int>> movingBoard(20, std::vector<int> (10, 0));
+    // board
     std::vector<std::vector<int>> storingBoard(20, std::vector<int> (10, 0));
     int posX = 5; int posY = 0; // initial position
 
@@ -27,7 +26,6 @@ int main(int argc, char* argv[])
 
         if (e.type == SDL_KEYDOWN)
         {
-
             if (e.key.keysym.sym == SDLK_ESCAPE) break;
 
             switch(e.key.keysym.sym)
@@ -42,7 +40,6 @@ int main(int argc, char* argv[])
                             updateStoringBoard(posX, posY, storingBoard);
                             posX = 5; posY = 0;
                         }
-                        updateMovingBoard(posX, posY, movingBoard);
                     }
                     break;
                 }
@@ -57,7 +54,6 @@ int main(int argc, char* argv[])
                             updateStoringBoard(posX, posY, storingBoard);
                             posX = 5; posY = 0;
                         }
-                        updateMovingBoard(posX, posY, movingBoard);
                     }
                     break;
 
@@ -72,8 +68,9 @@ int main(int argc, char* argv[])
                             updateStoringBoard(posX, posY, storingBoard);
                             posX = 5; posY = 0;
                         }
-                        updateMovingBoard(posX, posY, movingBoard);
                     }
+                    else
+                        updateStoringBoard(posX, posY, storingBoard);
                     break;
                 }
 
