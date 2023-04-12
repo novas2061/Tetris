@@ -55,12 +55,6 @@ void initBoard(std::vector<std::vector<int>> &b)
     b = vec;
 }
 
-void updateMovingBoard(int posX, int posY, std::vector<std::vector<int>>& board)
-{
-    initBoard(board);
-    board[posY][posX] = 1;
-}
-
 void dropTheBlock(int posX, int& posY, std::vector<std::vector<int>> storingBoard)
 {
     for (int line = 19; line >= 0; line--)
