@@ -64,6 +64,7 @@ vector<vector<vector<Point>>> nPieces
 
 vector<vector<vector<int>>> pSkirt
 {
+    //square
     {
         {2, 2},  {2, 2},  {2, 2},  {2, 2}
     },
@@ -106,23 +107,23 @@ Piece::Piece(int pType, int pRotation, int pX, int pY, Color pColor)
 	setShade(pColor);
 }
 
-void Piece::setType				(int pType)
+void Piece::setType(int pType)
 {
 	type = pType;
 }
-void Piece::setRotation			(int pRotation)
+void Piece::setRotation(int pRotation)
 {
 	rotation = pRotation;
 }
-void Piece::setX					(int pX)
+void Piece::setX(int pX)
 {
 	x = pX;
 }
-void Piece::setY 					(int pY)
+void Piece::setY(int pY)
 {
 	y = pY;
 }
-void Piece::setShade				(Color pColor)
+void Piece::setShade(Color pColor)
 {
 	shade = pColor;
 }
@@ -219,26 +220,3 @@ void Piece::moveDown()
     setY(getY() + 1);
 }
 
-void Piece::displayBody()	const
-{
-	for (int i = 0; i < 4; i++)
-	{
-		cout << "(" << getBody()[i].x << ", " << getBody()[i].y << ")\n";
-	}
-}
-void Piece::displayDetails() const
-{
-	cout << "Piece details:\n";
-
-	cout << "Points: \n";
-	displayBody();
-	cout << "\nType: " << getType()
-		<< "\nRotation: " << getRotation()
-		<< "\nx: " << getX()
-		<< "\ny: " << getY();
-
-	cout << "\nminX: " << minX()
-	<< "\nminY: " << minY()
-	<< "\nmaxX: " << maxX()
-	<< "\nmaxY: " << maxY();
-}
