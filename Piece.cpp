@@ -64,7 +64,6 @@ vector<vector<vector<Point>>> nPieces
 
 vector<vector<vector<int>>> pSkirt
 {
-    //square
     {
         {2, 2},  {2, 2},  {2, 2},  {2, 2}
     },
