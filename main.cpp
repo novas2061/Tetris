@@ -114,9 +114,6 @@ int main(int argc, char* argv[])
         {
             if (e.type == SDL_KEYDOWN)
             {
-                cout << "\nPLAYER'S SCORE: " << PLAYER_SCORE;
-                cout << "\nLINES CLEARED: " << LINES_CLEARED;
-                cout << "\nWAIT_TIME: " << WAIT_TIME;
                 if (e.key.keysym.sym == SDLK_ESCAPE) break;
 
                 if (e.key.keysym.sym == SDLK_LEFT)
@@ -263,3 +260,5 @@ void createNewPiece(Piece* curPiece, Piece* nextPiece)
     nextPiece->setShade((Color)(getRand(0, 6) % 7));
     nextPiece->moveToInitialSpot();
 }
+
+
