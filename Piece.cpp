@@ -203,6 +203,7 @@ std::vector<int> Piece::getSkirt() const // largest y for each x
 void Piece::moveToInitialSpot()
 {
 	setX(BOARD_WIDTH / 2 - 3);
+	
     int maxSkirt = getSkirt()[0];
     for (unsigned int i = 1; i < getSkirt().size(); i++)
         if (getSkirt()[i] > maxSkirt)
