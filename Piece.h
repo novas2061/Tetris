@@ -12,19 +12,19 @@ class Piece
 public:
 	explicit Piece(int i = 0, int = 0, int = 0, int = 0, Color = PURPLE);
 
-    // set functions
-    void setPiece				(int, int, int, int, Color);
+   	// set functions
+    	void setPiece				(int, int, int, int, Color);
 	void setType				(int);
 	void setRotation			(int);
-	void setX					(int);
-	void setY 					(int);
+	void setX				(int);
+	void setY 				(int);
 	void setShade				(Color);
 
 	// get functions
-	int getType					() const;
+	int getType				() const;
 	int getRotation				() const;
-    int getX					() const;
-	int getY 					() const;
+    	int getX				() const;
+	int getY 				() const;
 	Color getShade 				() const;
 
 	int minX(std::vector<Point>) const;
@@ -32,7 +32,7 @@ public:
 	int maxX(std::vector<Point>) const;
 	int maxY(std::vector<Point>) const;
 
-    int minX() const;
+    	int minX() const;
 	int minY() const;
 	int maxX() const;
 	int maxY() const;
@@ -41,12 +41,9 @@ public:
 	std::vector<int> getSkirt() const; // largest y for each x
 
 	void moveToInitialSpot();
-    void moveLeft();
-    void moveRight();
-    void moveDown();
-
-	void displayBody()	const;
-	void displayDetails() const;
+    	void moveLeft();
+    	void moveRight();
+    	void moveDown();
 private:
 	int type, rotation, x, y;
 	Color shade;
