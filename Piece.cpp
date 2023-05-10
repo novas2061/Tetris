@@ -64,7 +64,6 @@ vector<vector<vector<Point>>> nPieces
 
 vector<vector<vector<int>>> pSkirt
 {
-    //square
     {
         {2, 2},  {2, 2},  {2, 2},  {2, 2}
     },
@@ -130,10 +129,10 @@ void Piece::setShade(Color pColor)
 
 // get functions
 int Piece::getType					() const { return type; }
-int Piece::getRotation				() const { return rotation; }
-int Piece::getX					    () const { return x; }
+int Piece::getRotation					() const { return rotation; }
+int Piece::getX					    	() const { return x; }
 int Piece::getY 					() const { return y; }
-Color Piece::getShade 				() const { return shade; }
+Color Piece::getShade 					() const { return shade; }
 
 int Piece::minX(std::vector<Point> pVec) const
 {
@@ -152,6 +151,7 @@ int Piece::minY(std::vector<Point> pVec) const
 	return mi;
 
 }
+
 int Piece::maxX(std::vector<Point> pVec) const
 {
 	int ma = pVec[0].x;
@@ -161,6 +161,7 @@ int Piece::maxX(std::vector<Point> pVec) const
 	return ma;
 
 }
+
 int Piece::maxY(std::vector<Point> pVec) const
 {
 	int ma = pVec[0].y;
@@ -183,6 +184,7 @@ int Piece::maxX() const
 {
 	return maxX(getBody()) + getX();
 }
+
 int Piece::maxY() const
 {
 	return maxY(getBody()) + getY();
@@ -192,6 +194,7 @@ std::vector<Point> Piece::getBody() const
 {
 	return nPieces[getType()][getRotation()];
 }
+
 std::vector<int> Piece::getSkirt() const // largest y for each x
 {
 	return pSkirt[getType()][getRotation()];
